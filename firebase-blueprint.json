@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Premium profile for users on XChat",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user identity UUID" },
+        "name": { "type": "string", "description": "Display name" },
+        "avatar": { "type": "string", "description": "Profile picture URL" },
+        "coins": { "type": "integer", "description": "Gold Coins currency count" },
+        "diamonds": { "type": "integer", "description": "Virtual Diamonds accumulated" },
+        "level": { "type": "integer", "description": "Premium account leveling" },
+        "vip": { "type": "boolean", "description": "VIP status" },
+        "country": { "type": "string", "description": "Country of origin" },
+        "gender": { "type": "string", "enum": ["Male", "Female", "Other"] },
+        "bio": { "type": "string", "description": "Personal biography" },
+        "verified": { "type": "boolean", "description": "Verified match toggle" }
+      },
+      "required": ["id", "name", "coins", "diamonds", "level", "vip"]
+    },
+    "TransactionItem": {
+      "title": "TransactionItem",
+      "description": "Financial ledger logs for purchasing or sending virtual elements",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Transaction identifier" },
+        "type": { "type": "string", "enum": ["buy_coin", "send_gift", "vip_purchase", "withdraw"] },
+        "amount": { "type": "integer", "description": "Coin amount involved" },
+        "diamondsAmount": { "type": "integer", "description": "Equivalent diamonds conversion if any" },
+        "description": { "type": "string", "description": "Clear metadata description" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["Success", "Pending", "Failed"] }
+      },
+      "required": ["id", "type", "amount", "description", "timestamp", "status"]
+    },
+    "ReportItem": {
+      "title": "ReportItem",
+      "description": "Incident report submitted against host violations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique report reference ID" },
+        "reportedHostId": { "type": "string", "description": "Target host identity" },
+        "reportedHostName": { "type": "string", "description": "Target host display title" },
+        "reason": { "type": "string", "description": "Description of violation reason details" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["Pending", "Reviewed", "Dismissed"] }
+      },
+      "required": ["id", "reportedHostId", "reportedHostName", "reason", "timestamp", "status"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document keyed by security auth uid"
+    },
+    "users/{userId}/transactions/{transactionId}": {
+      "schema": "TransactionItem",
+      "description": "Individual transactions ledger owned by user"
+    },
+    "reports/{reportId}": {
+      "schema": "ReportItem",
+      "description": "Abuse reports list reviewed by administrators"
+    }
+  }
+}

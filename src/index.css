@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-gold-50: #fff1f2;
+  --color-gold-100: #ffe4e6;
+  --color-gold-200: #fecdd3;
+  --color-gold-300: #fda4af;
+  --color-gold-400: #fb7185;
+  --color-gold-500: #f43f5e; /* Rose 500 Accent */
+  --color-gold-600: #e11d48; /* Rose 600 Metallic Focus */
+  --color-gold-700: #be123c;
+  --color-gold-800: #9f1239;
+  --color-gold-900: #881337;
+  --color-gold-950: #4c0519;
+
+  --color-obsidian-50: #fafafa;
+  --color-obsidian-100: #f4f4f5;
+  --color-obsidian-200: #e4e4e7;
+  --color-obsidian-300: #d4d4d8;
+  --color-obsidian-400: #a1a1aa;
+  --color-obsidian-500: #71717a;
+  --color-obsidian-600: #52525b;
+  --color-obsidian-700: #3f3f46;
+  --color-obsidian-750: #27272a; /* Border #27272a */
+  --color-obsidian-800: #18181b; /* Card background #18181b */
+  --color-obsidian-850: #121215;
+  --color-obsidian-900: #0e0e11;
+  --color-obsidian-950: #09090b; /* Sleek absolute deep background #09090b */
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-600);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-400);
+}
+
+/* Custom Shimmer and Hover Animations */
+@keyframes gold-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f43f5e 0%, #a855f7 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-metallic-bg {
+  background: linear-gradient(135deg, #f43f5e 0%, #ff859b 30%, #4f46e5 70%, #6366f1 100%);
+  background-size: 200% auto;
+}
+
+.gold-metallic-bg:hover {
+  animation: gold-shimmer 2s linear infinite;
+}
+
+/* VIP Badge Flowing border */
+.vip-border-anim {
+  position: relative;
+  background: linear-gradient(90deg, #f43f5e, #fda4af, #6366f1, #f43f5e);
+  background-size: 300% 300%;
+  animation: vip-border-flow 4s ease infinite;
+}
+
+@keyframes vip-border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Float-up keyframe for real virtual gift fly */
+@keyframes gift-float-up {
+  0% {
+    transform: translateY(100px) scale(0.5);
+    opacity: 0;
+  }
+  15% {
+    transform: translateY(0) scale(1.2);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(-10px) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-80px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-150px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.gift-fly-effect {
+  animation: gift-float-up 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Pulse Glow */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 156, 37, 0.2);
+}
+
+.gold-glow-strong {
+  box-shadow: 0 0 35px rgba(212, 156, 37, 0.45);
+}
